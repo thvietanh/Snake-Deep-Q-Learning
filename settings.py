@@ -18,9 +18,6 @@ BLOCK_SIZE = 30
 # Speed of the game (higher number means faster training but more CPU usage)
 SPEED = 60
 
-MAX_PARTICLES = 30
-# Max particles on screen at once
-
 class Direction(Enum):
     RIGHT = 1
     LEFT = 2
