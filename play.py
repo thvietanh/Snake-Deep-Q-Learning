@@ -15,7 +15,7 @@ if __name__ == '__main__':
     total_score = 0
     games_played = 0
 
-    print("Playing...")
+    print("Playing with the trained model...")
     
     while True:
         state_old = agent.get_state(game)
@@ -39,7 +39,7 @@ if __name__ == '__main__':
             total_score += score
             games_played += 1
             avg_score = total_score / games_played
-            print(f"Game {games_played} Over! Score: {score} | Average: {avg_score:.2f}")
+            print(f"Game {games_played} over! Score: {score} | Average: {avg_score:.2f}")
             game.reset()
         
         clock.tick(SPEED)
