@@ -1,19 +1,96 @@
-# Snake-Deep-Q-Learning
+# 🐍 Snake-Deep-Q-Learning
 
-# To run this repository, you will need some installations:
+Mô hình AI chơi game Snake sử dụng Deep Q-Learning.
 
-1. Download Python: https://www.python.org/
-2. Open Command Prompt, switch to your directory where you installed the repository.
-3. Run: `python -m pip install requirement.txt`
+---
 
-# To start training:
-1. In Command Prompt, run: `python train.py` (The model is saved every 10 games)
-2. After training, close the program.
-3. The model is saved in `model.pth`
-4. To play with the trained model, run: `python play.py`
+## 📦 Yêu cầu cài đặt
 
-# Optional settings:
-- In `settings.py`, you can change some parameters.
-    - `BLOCK_SIZE (default = 30)` : make sure that 600/BLOCK_SIZE equals an even number
-    - `SPEED (default = 60)` : change the tick speed of the game
-    - `Color` : change the colors of the game
+Trước khi chạy project, hãy cài đặt các thành phần sau:
+
+1. Tải và cài đặt Python: https://www.python.org/
+2. Mở Command Prompt (CMD)
+3. Di chuyển đến thư mục chứa repository:
+
+   ```bash
+   cd duong_dan_den_repository
+   ```
+4. Cài đặt các thư viện cần thiết:
+
+   ```bash
+   python -m pip install -r requirement.txt
+   ```
+
+---
+
+## 🚀 Bắt đầu huấn luyện AI
+
+Chạy lệnh sau trong Command Prompt:
+
+```bash
+python train.py
+```
+
+📌 Lưu ý:
+
+* Mô hình sẽ tự động được lưu sau mỗi 10 ván chơi.
+* Sau khi huấn luyện xong, bạn có thể đóng chương trình.
+
+Model đã huấn luyện sẽ được lưu tại:
+
+```bash
+model.pth
+```
+
+---
+
+## 🎮 Chơi với model đã huấn luyện
+
+Chạy:
+
+```bash
+python play.py
+```
+
+---
+
+## ⚙️ Tùy chỉnh cài đặt
+
+Bạn có thể thay đổi một số tham số trong file:
+
+```bash
+settings.py
+```
+
+### Các tùy chọn:
+
+* `BLOCK_SIZE` *(mặc định = 30)*
+  Kích thước của mỗi ô trong game.
+  ⚠️ Đảm bảo rằng:
+
+  ```python
+  600 / BLOCK_SIZE
+  ```
+
+  cho ra một số chẵn.
+
+* `SPEED` *(mặc định = 60)*
+  Điều chỉnh tốc độ cập nhật của trò chơi.
+
+* `Color`
+  Thay đổi màu sắc của game.
+
+---
+
+## 📁 Cấu trúc file chính
+
+| File            | Chức năng                     |
+| -------------   | ----------------------------- |
+| `train.py`      | Huấn luyện AI                 |
+| `play.py`       | Chơi bằng model đã huấn luyện |
+| `settings.py`   | Tùy chỉnh tham số game        |
+| `model.pth`     | File model đã lưu             |
+| `plotting.py`   | Tạo biểu đồ                   |
+| `snake_game.py` | Trò chơi rắn săn mồi          |
+
+---
