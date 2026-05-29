@@ -4,7 +4,7 @@ Mô hình AI chơi game Snake sử dụng Deep Q-Learning.
 
 ---
 
-## 📦 Yêu cầu cài đặt
+## Yêu cầu cài đặt
 
 Trước khi chạy project, hãy cài đặt các thành phần sau:
 
@@ -23,7 +23,7 @@ Trước khi chạy project, hãy cài đặt các thành phần sau:
 
 ---
 
-## 🚀 Bắt đầu huấn luyện AI
+## Bắt đầu huấn luyện AI
 
 Chạy lệnh sau trong Command Prompt:
 
@@ -31,7 +31,7 @@ Chạy lệnh sau trong Command Prompt:
 python train.py
 ```
 
-📌 Lưu ý:
+Lưu ý:
 
 * Mô hình sẽ tự động được lưu sau mỗi 10 ván chơi.
 * Sau khi huấn luyện xong, bạn có thể đóng chương trình.
@@ -44,7 +44,7 @@ model.pth
 
 ---
 
-## 🎮 Chơi với model đã huấn luyện
+## Chơi với model đã huấn luyện
 
 Chạy:
 
@@ -54,7 +54,7 @@ python play.py
 
 ---
 
-## ⚙️ Tùy chỉnh cài đặt
+## Tùy chỉnh cài đặt
 
 Bạn có thể thay đổi một số tham số trong file:
 
@@ -66,7 +66,7 @@ settings.py
 
 * `BLOCK_SIZE` *(mặc định = 30)*
   Kích thước của mỗi ô trong game.
-  ⚠️ Đảm bảo rằng:
+  Đảm bảo rằng:
 
   ```python
   600 / BLOCK_SIZE
