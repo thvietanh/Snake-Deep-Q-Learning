@@ -25,6 +25,7 @@ python -m pip install -r requirement
 python -m venv venv
 ```
 * Activate virtual environment with:
+
 *Windows (CMD)*
 ```bash
 venv\Scripts\activate.bat
