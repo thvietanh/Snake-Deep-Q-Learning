@@ -34,3 +34,5 @@ GREEN = (166, 208, 87)
 GRAY = (100, 100, 100)
 BLUE = (73, 117, 230)
 ORANGE = (174, 214, 94)
+
+# Get-ChildItem -Path . -Filter __pycache__ -Recurse -Directory | Remove-Item -Recurse -Force
