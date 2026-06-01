@@ -199,10 +199,8 @@ if __name__ == '__main__':
             agent.learn(experiences)
 
         if done:
-            if agent.epsilon > 5:
-                agent.epsilon = np.exp(-agent.number_of_games // 2 * E_DECAY) * agent.epsilon  # Decay epsilon after each game to reduce exploration over time
+            agent.epsilon = max(1.0, np.exp(-agent.number_of_games // 2 * E_DECAY) * agent.epsilon)  # Decay epsilon after each game to reduce exploration over time
                 # Decay epsilon after each game to reduce exploration over time
-            else: agent.epsilon = 5
             plotter.update(score)
             # Reset the game and increment the number of games played
             game.reset()
