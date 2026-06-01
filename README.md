@@ -13,22 +13,30 @@ Trước khi chạy project, hãy cài đặt các thành phần sau:
 3. Di chuyển đến thư mục chứa repository:
 
 ```bash
-   cd duong_dan_den_repository
+cd duong_dan_den_repository
    ```
 4. Cài đặt các thư viện cần thiết:
 
 ```bash
-   python -m pip install -r requirement
-   ```
+python -m pip install -r requirement
+```
 * To avoid conflicts and errors, you may want to create a virtual environment:
 ```bash
-   python -m venv venv
-   ```
+python -m venv venv
+```
 * Activate virtual environment with:
+*Windows (CMD)*
 ```bash
-   venv/Scripts/Activate.ps1
-   ```
-
+venv\Scripts\activate.bat
+```
+*Windows (Powershell)*
+```bash
+venv/Scripts/Activate.ps1
+```
+* To deactivate the virtual environment:
+```bash
+deactivate
+```
 
 ---
 
