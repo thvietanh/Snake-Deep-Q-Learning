@@ -6,11 +6,11 @@ Mô hình AI chơi game Snake sử dụng Deep Q-Learning.
 
 ## Yêu cầu cài đặt
 
-Trước khi chạy project, hãy cài đặt các thành phần sau:
+Trước khi chạy chương trình, hãy cài đặt các tài nguyên sau:
 
 1. Tải và cài đặt Python: https://www.python.org/
 2. Mở Command Prompt (CMD)
-3. Di chuyển đến thư mục chứa repository:
+3. Di chuyển đến thư mục chứa repository đã tải về:
 
 ```bash
 cd duong_dan_den_repository
@@ -18,13 +18,13 @@ cd duong_dan_den_repository
 4. Cài đặt các thư viện cần thiết:
 
 ```bash
-python -m pip install -r requirement
+python -m pip install -r requirement.txt
 ```
-* To avoid conflicts and errors, you may want to create a virtual environment:
+* Trong trường hợp gặp xung đột và lỗi, bạn có thể tạo một môi trường ảo (virtual environment):
 ```bash
 python -m venv venv
 ```
-* Activate virtual environment with:
+* Khởi động môi trường ảo:
 
 *Windows (CMD)*
 ```bash
@@ -34,7 +34,7 @@ venv\Scripts\activate.bat
 ```bash
 venv/Scripts/Activate.ps1
 ```
-* To deactivate the virtual environment:
+* Tắt môi trường ảo:
 ```bash
 deactivate
 ```
@@ -54,7 +54,7 @@ Lưu ý:
 * Mô hình sẽ tự động được lưu sau mỗi 10 ván chơi.
 * Sau khi huấn luyện xong, bạn có thể đóng chương trình.
 
-Model đã huấn luyện sẽ được lưu tại:
+Mô hình đã huấn luyện sẽ được lưu tại:
 
 ```bash
 model.pth
@@ -74,11 +74,7 @@ python play.py
 
 ## Tùy chỉnh cài đặt
 
-Bạn có thể thay đổi một số tham số trong file:
-
-```bash
-settings.py
-```
+Bạn có thể thay đổi một số tham số trong file:```bash settings.py```
 
 ### Các tùy chọn:
 
