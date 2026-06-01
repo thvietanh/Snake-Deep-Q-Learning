@@ -15,7 +15,7 @@ plotter = TrainingPlotter()
 # Hyperparameters
 MAX_MEMORY = 100_000
 BATCH_SIZE = 1000
-EPSILON = 100  # Initial exploration 
+EPSILON = 100.0  # Initial exploration 
 E_DECAY = 0.001  # Decay rate for exploration
 GAMMA = 0.9 # Discount factor for future rewards
 LEARNING_RATE = 0.001
@@ -51,7 +51,7 @@ class ReplayMemory:
 class Agent:
     def __init__(self):
         # Configure the sizes of the state, action, and hidden layers for the DQN
-        self.state_size = 15
+        self.state_size = 17
         self.action_size = 3
         self.hidden_size = 256
 
@@ -112,10 +112,14 @@ class Agent:
             (game.fruit.position.x < game.snake.body[0].x) and (game.fruit.position.y < game.snake.body[0].y),
             (game.fruit.position.x > game.snake.body[0].x) and (game.fruit.position.y < game.snake.body[0].y),
             (game.fruit.position.y < game.snake.body[0].y) and (game.fruit.position.x > game.snake.body[0].x),
-            (game.fruit.position.y > game.snake.body[0].y) and (game.fruit.position.x < game.snake.body[0].x)
+            (game.fruit.position.y > game.snake.body[0].y) and (game.fruit.position.x < game.snake.body[0].x),
+
+            # Heuristic distance
+            (game.fruit.position.x - game.snake.body[0].x) / SCREEN_WIDTH,
+            (game.fruit.position.y - game.snake.body[0].y) / SCREEN_HEIGHT
         ]
 
-        return np.array(state, dtype=int)
+        return np.array(state, dtype=float)
     
     # Push the experience tuple (state, action, reward, next_state, done) into the replay memory
     def remember(self, state, action, reward, next_state, done):
@@ -199,7 +203,7 @@ if __name__ == '__main__':
             agent.learn(experiences)
 
         if done:
-            agent.epsilon = max(1.0, np.exp(-agent.number_of_games // 2 * E_DECAY) * agent.epsilon)  # Decay epsilon after each game to reduce exploration over time
+            agent.epsilon = max(5.0, np.exp(-agent.number_of_games * E_DECAY) * agent.epsilon)  # Decay epsilon after each game to reduce exploration over time
                 # Decay epsilon after each game to reduce exploration over time
             plotter.update(score)
             # Reset the game and increment the number of games played

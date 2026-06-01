@@ -105,6 +105,9 @@ class Game:
     
     def play_step(self, action):
         self.frame_iteration += 1
+        old_head = Point(self.snake.body[0].x, self.snake.body[0].y)
+        old_distance = abs(old_head.x - self.fruit.position.x) + abs(old_head.y - self.fruit.position.y)
+
         self.snake.change_direction(action)
         self.snake.move()
 
@@ -129,6 +132,11 @@ class Game:
             self.fruit.spawn(self.snake.body)
         else:
             self.snake.body.pop()
+            new_distance = abs(self.snake.body[0].x - self.fruit.position.x) + abs(self.snake.body[0].y - self.fruit.position.y)
+            if new_distance < old_distance:
+                self.reward += 1
+            elif new_distance > old_distance:
+                self.reward -= 1
 
         self.update()
 
