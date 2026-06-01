@@ -51,7 +51,7 @@ class ReplayMemory:
 class Agent:
     def __init__(self):
         # Configure the sizes of the state, action, and hidden layers for the DQN
-        self.state_size = 11
+        self.state_size = 15
         self.action_size = 3
         self.hidden_size = 256
 
@@ -103,10 +103,16 @@ class Agent:
             dir_u,
             dir_d,
 
-            game.fruit.position.x < game.snake.body[0].x,
-            game.fruit.position.x > game.snake.body[0].x,
-            game.fruit.position.y < game.snake.body[0].y,
-            game.fruit.position.y > game.snake.body[0].y
+            (game.fruit.position.x < game.snake.body[0].x) and (game.fruit.position.y == game.snake.body[0].y),
+            (game.fruit.position.x > game.snake.body[0].x) and (game.fruit.position.y == game.snake.body[0].y),
+            (game.fruit.position.y < game.snake.body[0].y) and (game.fruit.position.x == game.snake.body[0].x),
+            (game.fruit.position.y > game.snake.body[0].y) and (game.fruit.position.x == game.snake.body[0].x),
+
+            # Diagonal Direction
+            (game.fruit.position.x < game.snake.body[0].x) and (game.fruit.position.y < game.snake.body[0].y),
+            (game.fruit.position.x > game.snake.body[0].x) and (game.fruit.position.y < game.snake.body[0].y),
+            (game.fruit.position.y < game.snake.body[0].y) and (game.fruit.position.x > game.snake.body[0].x),
+            (game.fruit.position.y > game.snake.body[0].y) and (game.fruit.position.x < game.snake.body[0].x)
         ]
 
         return np.array(state, dtype=int)
@@ -129,7 +135,7 @@ class Agent:
             action_values = self.local_model(state)  # Q values for all actions
         self.local_model.train()
 
-        if random.uniform(0.0, 99.0) < self.epsilon:
+        if random.uniform(0.0, 100.0) < self.epsilon:
             move = random.randint(0, self.action_size - 1)
         else:
             move = torch.argmax(action_values).item()
@@ -193,8 +199,7 @@ if __name__ == '__main__':
             agent.learn(experiences)
 
         if done:
-            if agent.epsilon > 0:
-                agent.epsilon = np.exp(-agent.number_of_games // 2 * E_DECAY) * agent.epsilon  # Decay epsilon after each game to reduce exploration over time
+            agent.epsilon = max(1.0, np.exp(-agent.number_of_games // 2 * E_DECAY) * agent.epsilon)  # Decay epsilon after each game to reduce exploration over time
                 # Decay epsilon after each game to reduce exploration over time
             plotter.update(score)
             # Reset the game and increment the number of games played
