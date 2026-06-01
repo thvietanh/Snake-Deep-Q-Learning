@@ -135,7 +135,7 @@ class Agent:
             action_values = self.local_model(state)  # Q values for all actions
         self.local_model.train()
 
-        if random.uniform(0.0, 99.0) < self.epsilon:
+        if random.uniform(0.0, 100.0) < self.epsilon:
             move = random.randint(0, self.action_size - 1)
         else:
             move = torch.argmax(action_values).item()
