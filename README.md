@@ -74,7 +74,7 @@ python play.py
 
 ## Tùy chỉnh cài đặt
 
-Bạn có thể thay đổi một số tham số trong file:```bash settings.py```
+Bạn có thể thay đổi một số tham số trong file:```settings.py```
 
 ### Các tùy chọn:
 
