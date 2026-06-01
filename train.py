@@ -51,7 +51,7 @@ class ReplayMemory:
 class Agent:
     def __init__(self):
         # Configure the sizes of the state, action, and hidden layers for the DQN
-        self.state_size = 11
+        self.state_size = 15
         self.action_size = 3
         self.hidden_size = 256
 
@@ -103,10 +103,16 @@ class Agent:
             dir_u,
             dir_d,
 
-            game.fruit.position.x < game.snake.body[0].x,
-            game.fruit.position.x > game.snake.body[0].x,
-            game.fruit.position.y < game.snake.body[0].y,
-            game.fruit.position.y > game.snake.body[0].y
+            (game.fruit.position.x < game.snake.body[0].x) and (game.fruit.position.y == game.snake.body[0].y),
+            (game.fruit.position.x > game.snake.body[0].x) and (game.fruit.position.y == game.snake.body[0].y),
+            (game.fruit.position.y < game.snake.body[0].y) and (game.fruit.position.x == game.snake.body[0].x),
+            (game.fruit.position.y > game.snake.body[0].y) and (game.fruit.position.x == game.snake.body[0].x),
+
+            # Diagonal Direction
+            (game.fruit.position.x < game.snake.body[0].x) and (game.fruit.position.y < game.snake.body[0].y),
+            (game.fruit.position.x > game.snake.body[0].x) and (game.fruit.position.y < game.snake.body[0].y),
+            (game.fruit.position.y < game.snake.body[0].y) and (game.fruit.position.x > game.snake.body[0].x),
+            (game.fruit.position.y > game.snake.body[0].y) and (game.fruit.position.x < game.snake.body[0].x)
         ]
 
         return np.array(state, dtype=int)
@@ -193,9 +199,10 @@ if __name__ == '__main__':
             agent.learn(experiences)
 
         if done:
-            if agent.epsilon > 0:
+            if agent.epsilon > 5:
                 agent.epsilon = np.exp(-agent.number_of_games // 2 * E_DECAY) * agent.epsilon  # Decay epsilon after each game to reduce exploration over time
                 # Decay epsilon after each game to reduce exploration over time
+            else: agent.epsilon = 5
             plotter.update(score)
             # Reset the game and increment the number of games played
             game.reset()
