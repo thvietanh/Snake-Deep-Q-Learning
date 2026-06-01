@@ -18,11 +18,11 @@ cd duong_dan_den_repository
 4. Cài đặt các thư viện cần thiết:
 
 ```bash
-python -m pip install -r requirement.txt
+py -m pip install -r requirement.txt
 ```
 * Trong trường hợp gặp xung đột và lỗi, bạn có thể tạo một môi trường ảo (virtual environment):
 ```bash
-python -m venv venv
+py -m venv venv
 ```
 * Khởi động môi trường ảo:
 
@@ -46,7 +46,7 @@ deactivate
 Chạy lệnh sau trong Command Prompt:
 
 ```bash
-python train.py
+py train.py
 ```
 
 Lưu ý:
@@ -67,7 +67,7 @@ model.pth
 Chạy:
 
 ```bash
-python play.py
+py play.py
 ```
 
 ---
