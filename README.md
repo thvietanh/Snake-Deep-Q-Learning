@@ -1,6 +1,6 @@
 # 🐍 Snake-Deep-Q-Learning
 
-Mô hình AI chơi game Snake sử dụng Deep Q-Learning.
+Mô hình AI chơi game Rắn săn mồi sử dụng Deep Q-Learning.
 
 ---
 
