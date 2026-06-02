@@ -96,7 +96,7 @@ Bạn có thể thay đổi một số tham số trong file:```settings.py```
 
 ---
 
-## 📁 Cấu trúc file chính
+## Cấu trúc file chính
 
 | File            | Chức năng                     |
 | -------------   | ----------------------------- |
