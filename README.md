@@ -8,7 +8,7 @@ Mô hình AI chơi game Snake sử dụng Deep Q-Learning.
 
 Trước khi chạy chương trình, hãy cài đặt các tài nguyên sau:
 
-1. Tải và cài đặt Python: https://www.python.org/
+1. Tải và cài đặt Python: https://www.python.org/downloads/
 2. Mở Command Prompt (CMD)
 3. Di chuyển đến thư mục chứa repository đã tải về:
 
