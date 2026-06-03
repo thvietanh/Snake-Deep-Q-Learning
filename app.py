@@ -106,8 +106,8 @@ def draw_speed_panel(speed, font):
     screen.blit(manual_label, (WINDOW_WIDTH + 20, manual_y))
     
     small_font = pygame.font.Font(resource_path('texture/arial.ttf'), 14)
-    keys_text = small_font.render('↑↓←→ or WASD to move', True, (180, 180, 190))
-    space_text = small_font.render('SPACE to toggle manual', True, (180, 180, 190))
+    keys_text = small_font.render('SPACE to toggle manual', True, (180, 180, 190))
+    space_text = small_font.render('Arrow keys or WASD to move manually', True, (180, 180, 190))
     screen.blit(keys_text, (WINDOW_WIDTH + 20, manual_y + 26))
     screen.blit(space_text, (WINDOW_WIDTH + 20, manual_y + 42))
 
@@ -120,12 +120,11 @@ def draw_speed_panel(speed, font):
     total = globals().get('total_score', 0)
     avg = (total / games) if games > 0 else 0.0
     records = globals().get('game_records', [])
-    best_score = max(records) if records else 0
 
     stats_x = WINDOW_WIDTH + 25
     stats_y = 235
     
-    stats_title = font.render('📊 Session Stats', True, (150, 200, 150))
+    stats_title = font.render('Session Stats', True, (150, 200, 150))
     screen.blit(stats_title, (stats_x, stats_y))
     
     games_text = font.render(f'Games: {games}', True, (220, 220, 220))
@@ -138,7 +137,7 @@ def draw_speed_panel(speed, font):
 
     recent_label = small_font.render('Recent scores:', True, (160, 160, 170))
     screen.blit(recent_label, (stats_x, stats_y + 110))
-    for i, s in enumerate(records[:4]):
+    for i, s in enumerate(records[:3]):
         rtext = small_font.render(f'{i+1}. {s}', True, (180, 200, 180))
         screen.blit(rtext, (stats_x + 10, stats_y + 128 + i * 15))
 
@@ -256,7 +255,8 @@ if __name__ == '__main__':
     clock = pygame.time.Clock()
     pygame.font.init()
     font = pygame.font.Font(resource_path('texture/arial.ttf'), 16)
-
+    
+    best_score = 0
     total_score = 0
     games_played = 0
     game_records = []
@@ -338,6 +338,7 @@ if __name__ == '__main__':
 
         if running and done:
             total_score += score
+            best_score = max(best_score, score)
             games_played += 1
             # record the finished game's score (most recent first)
             game_records.insert(0, score)
