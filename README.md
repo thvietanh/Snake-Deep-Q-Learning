@@ -89,7 +89,7 @@ Bạn có thể thay đổi một số tham số trong file:```settings.py```
 
 ### Các tùy chọn:
 
-* `BLOCK_SIZE` *(mặc định = 30)*
+* `BLOCK_SIZE` *(mặc định = 40)*
   Kích thước của mỗi ô trong game.
   Đảm bảo rằng:
 
