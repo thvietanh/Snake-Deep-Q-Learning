@@ -83,12 +83,12 @@ Bạn có thể thay đổi một số tham số trong file:```settings.py```
   Đảm bảo rằng:
 
   ```python
-  600 / BLOCK_SIZE
+  800 / BLOCK_SIZE
   ```
 
   cho ra một số chẵn.
 
-* `SPEED` *(mặc định = 60)*
+* `SPEED` *(mặc định = 30)*
   Điều chỉnh tốc độ cập nhật của trò chơi.
 
 * `Color`

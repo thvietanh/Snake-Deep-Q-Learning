@@ -7,16 +7,16 @@ from collections import namedtuple
 from collections import deque
 
 # Window size
-WINDOW_HEIGHT = 600
-WINDOW_WIDTH = 600
+WINDOW_HEIGHT = 800
+WINDOW_WIDTH = 800
 
 # Screen size
-SCREEN_HEIGHT = 600
-SCREEN_WIDTH = 1040
+SCREEN_HEIGHT = 800
+SCREEN_WIDTH = 1240
 # Size of each block in the game
-BLOCK_SIZE = 30
+BLOCK_SIZE = 40
 # Speed of the game (higher number means faster training but more CPU usage)
-SPEED = 60
+SPEED = 30
 
 class Direction(Enum):
     RIGHT = 1

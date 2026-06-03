@@ -92,6 +92,7 @@ class Game:
         self.reward = 0
         self.gameOver = False
         self.frame_iteration = 0
+        self.animation_tick = 0
         self.fruit.spawn(self.snake.body)
 
     def reset(self):
@@ -149,6 +150,7 @@ class Game:
 
     
     def update(self):
+        self.animation_tick += 1
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -175,7 +177,20 @@ class Game:
 
             screen.blit(texture, (point.x, point.y))
 
+            # Add a subtle animation effect: pulsing head glow and body shimmer
+            if idx == 0:
+                glow_alpha = int((math.sin(self.animation_tick * 0.15) + 1) * 50)
+                glow_surface = pygame.Surface((BLOCK_SIZE, BLOCK_SIZE), pygame.SRCALPHA)
+                pygame.draw.circle(glow_surface, (255, 255, 255, glow_alpha), (BLOCK_SIZE // 2, BLOCK_SIZE // 2), BLOCK_SIZE // 2)
+                screen.blit(glow_surface, (point.x, point.y))
+            else:
+                shimmer_alpha = int((math.sin(self.animation_tick * 0.12 + idx * 0.5) + 1) * 12)
+                if shimmer_alpha > 0:
+                    shimmer_surface = pygame.Surface((BLOCK_SIZE, BLOCK_SIZE), pygame.SRCALPHA)
+                    shimmer_surface.fill((255, 255, 255, shimmer_alpha))
+                    screen.blit(shimmer_surface, (point.x, point.y))
+
         screen.blit(fruit_texture, (self.fruit.position.x, self.fruit.position.y))
         # Separator line moved to match the larger training plot area
-        pygame.draw.line(screen, GRAY, (600, 0), (600, SCREEN_HEIGHT))
+        pygame.draw.line(screen, GRAY, (WINDOW_WIDTH, 0), (WINDOW_HEIGHT, SCREEN_HEIGHT))
         # Timing and screen flip are handled in the main loop to avoid double buffering issues
