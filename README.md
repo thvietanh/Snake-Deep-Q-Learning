@@ -6,7 +6,7 @@ Mô hình AI chơi game Rắn săn mồi sử dụng Deep Q-Learning.
 
 # Download the pre-trained model here: [Download](https://github.com/thvietanh/Snake-Deep-Q-Learning/releases/tag/v1.0.1)
 
-## Custom installation
+## Custom installation and training your own model
 
 Trước khi chạy chương trình, hãy cài đặt các tài nguyên sau:
 
