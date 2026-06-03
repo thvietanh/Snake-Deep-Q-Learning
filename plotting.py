@@ -1,5 +1,5 @@
 import pygame
-
+from settings import *
 
 class TrainingPlotter:
     def __init__(self, rect=None):
@@ -13,7 +13,7 @@ class TrainingPlotter:
         self.bg_color = (20, 20, 20)
         self.border_color = (200, 200, 200)
         self.score_color = (0, 200, 0)
-        self.mean_color = (255, 215, 0)
+        self.mean_color = BLUE
         self.text_color = (235, 235, 235)
         self.epsilon = None
 

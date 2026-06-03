@@ -4,7 +4,9 @@ Mô hình AI chơi game Rắn săn mồi sử dụng Deep Q-Learning.
 
 ---
 
-## Yêu cầu cài đặt
+# Download the pre-trained model here: [Download](https://github.com/thvietanh/Snake-Deep-Q-Learning/releases/tag/v1.0.1)
+
+## Custom installation
 
 Trước khi chạy chương trình, hãy cài đặt các tài nguyên sau:
 
@@ -30,7 +32,7 @@ py -m venv venv
 ```bash
 venv\Scripts\activate.bat
 ```
-*Windows (Powershell)*
+or *Windows (Powershell)*
 ```bash
 venv/Scripts/Activate.ps1
 ```
@@ -64,12 +66,21 @@ model.pth
 
 ## Chơi với model đã huấn luyện
 
+* Method 1: 
 Chạy:
-
 ```bash
-py play.py
+py app.py
 ```
 
+* Method 2: If you want a clean executable file for distribution, run:
+```bash
+build.bat
+```
+(or if you are using CMD):
+```bash
+cmd /c build.bat
+```
+Your trained game will be in ```dist/Snake Game.exe```
 ---
 
 ## Tùy chỉnh cài đặt
@@ -83,12 +94,12 @@ Bạn có thể thay đổi một số tham số trong file:```settings.py```
   Đảm bảo rằng:
 
   ```python
-  600 / BLOCK_SIZE
+  800 / BLOCK_SIZE
   ```
 
   cho ra một số chẵn.
 
-* `SPEED` *(mặc định = 60)*
+* `SPEED` *(mặc định = 30)*
   Điều chỉnh tốc độ cập nhật của trò chơi.
 
 * `Color`
@@ -101,7 +112,7 @@ Bạn có thể thay đổi một số tham số trong file:```settings.py```
 | File            | Chức năng                     |
 | -------------   | ----------------------------- |
 | `train.py`      | Huấn luyện AI                 |
-| `play.py`       | Chơi bằng model đã huấn luyện |
+| `app.py`        | Chơi bằng model đã huấn luyện |
 | `settings.py`   | Tùy chỉnh tham số game        |
 | `model.pth`     | File model đã lưu             |
 | `plotting.py`   | Tạo biểu đồ                   |
