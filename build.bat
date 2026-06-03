@@ -1,0 +1,1 @@
+python -m PyInstaller --onefile --windowed --name "Snake Game" --icon "github.ico" --add-data "model.pth;." --add-data "texture;texture" --add-data "github.ico;." app.py

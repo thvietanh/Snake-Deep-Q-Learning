@@ -1,36 +1,47 @@
+import os
+import sys
+
 from settings import *
 from game_object.snake import *
 from game_object.fruit import *
+
+# Resolve paths for development and PyInstaller onefile bundles
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except AttributeError:
+        base_path = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(base_path, relative_path)
 
 # Use hardware surface + double buffering to reduce flicker/tearing
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.HWSURFACE | pygame.DOUBLEBUF)
 pygame.display.set_caption('Snake AI Training')
 
 # Load texture
-fruit_texture = pygame.image.load('texture/apple.png').convert_alpha()
+fruit_texture = pygame.image.load(resource_path('texture/apple.png')).convert_alpha()
 fruit_texture = pygame.transform.scale(fruit_texture, (BLOCK_SIZE, BLOCK_SIZE))
 
 snake_head_texture = {
-    Direction.UP: pygame.transform.scale(pygame.image.load('texture/snake/head_up.png').convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
-    Direction.DOWN: pygame.transform.scale(pygame.image.load('texture/snake/head_down.png').convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
-    Direction.LEFT: pygame.transform.scale(pygame.image.load('texture/snake/head_left.png').convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
-    Direction.RIGHT: pygame.transform.scale(pygame.image.load('texture/snake/head_right.png').convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
+    Direction.UP: pygame.transform.scale(pygame.image.load(resource_path('texture/snake/head_up.png')).convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
+    Direction.DOWN: pygame.transform.scale(pygame.image.load(resource_path('texture/snake/head_down.png')).convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
+    Direction.LEFT: pygame.transform.scale(pygame.image.load(resource_path('texture/snake/head_left.png')).convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
+    Direction.RIGHT: pygame.transform.scale(pygame.image.load(resource_path('texture/snake/head_right.png')).convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
 }
 
 snake_tail_texture = {
-    Direction.UP: pygame.transform.scale(pygame.image.load('texture/snake/tail_up.png').convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
-    Direction.DOWN: pygame.transform.scale(pygame.image.load('texture/snake/tail_down.png').convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
-    Direction.LEFT: pygame.transform.scale(pygame.image.load('texture/snake/tail_left.png').convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
-    Direction.RIGHT: pygame.transform.scale(pygame.image.load('texture/snake/tail_right.png').convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
+    Direction.UP: pygame.transform.scale(pygame.image.load(resource_path('texture/snake/tail_up.png')).convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
+    Direction.DOWN: pygame.transform.scale(pygame.image.load(resource_path('texture/snake/tail_down.png')).convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
+    Direction.LEFT: pygame.transform.scale(pygame.image.load(resource_path('texture/snake/tail_left.png')).convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
+    Direction.RIGHT: pygame.transform.scale(pygame.image.load(resource_path('texture/snake/tail_right.png')).convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
 }
 
 snake_body_texture = {
-    'vertical': pygame.transform.scale(pygame.image.load('texture/snake/body_vertical.png').convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
-    'horizontal': pygame.transform.scale(pygame.image.load('texture/snake/body_horizontal.png').convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
-    'topleft': pygame.transform.scale(pygame.image.load('texture/snake/body_topleft.png').convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
-    'topright': pygame.transform.scale(pygame.image.load('texture/snake/body_topright.png').convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
-    'bottomleft': pygame.transform.scale(pygame.image.load('texture/snake/body_bottomleft.png').convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
-    'bottomright': pygame.transform.scale(pygame.image.load('texture/snake/body_bottomright.png').convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
+    'vertical': pygame.transform.scale(pygame.image.load(resource_path('texture/snake/body_vertical.png')).convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
+    'horizontal': pygame.transform.scale(pygame.image.load(resource_path('texture/snake/body_horizontal.png')).convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
+    'topleft': pygame.transform.scale(pygame.image.load(resource_path('texture/snake/body_topleft.png')).convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
+    'topright': pygame.transform.scale(pygame.image.load(resource_path('texture/snake/body_topright.png')).convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
+    'bottomleft': pygame.transform.scale(pygame.image.load(resource_path('texture/snake/body_bottomleft.png')).convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
+    'bottomright': pygame.transform.scale(pygame.image.load(resource_path('texture/snake/body_bottomright.png')).convert_alpha(), (BLOCK_SIZE, BLOCK_SIZE)),
 }
 
 
@@ -135,9 +146,9 @@ class Game:
             self.snake.body.pop()
             new_distance = abs(self.snake.body[0].x - self.fruit.position.x) + abs(self.snake.body[0].y - self.fruit.position.y)
             if new_distance < old_distance:
-                self.reward += 1
+                self.reward += 0.1
             elif new_distance > old_distance:
-                self.reward -= 1
+                self.reward -= 0.1
 
         self.update()
 
