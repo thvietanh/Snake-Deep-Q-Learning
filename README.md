@@ -66,21 +66,21 @@ model.pth
 
 ## Chơi với model đã huấn luyện
 
-* Method 1: 
+* Cách 1: 
 Chạy:
 ```bash
 py app.py
 ```
 
-* Method 2: If you want a clean executable file for distribution, run:
+* Cách 2: Nếu bạn muốn 1 tệp thực thi sạch cho phân phối, chạy:
 ```bash
 build.bat
 ```
-(or if you are using CMD):
+(nếu bạn đang dùng CMD):
 ```bash
 cmd /c build.bat
 ```
-Your trained game will be in ```dist/Snake Game.exe```
+Trò chơi đã được huấn luyện của bạn sẽ nằm ở ```dist/Snake Game.exe```
 ---
 
 ## Tùy chỉnh cài đặt
