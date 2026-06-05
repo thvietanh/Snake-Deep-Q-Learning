@@ -32,7 +32,7 @@ py -m venv venv
 ```bash
 venv\Scripts\activate.bat
 ```
-or *Windows (Powershell)*
+hoặc *Windows (Powershell)*
 ```bash
 venv/Scripts/Activate.ps1
 ```
