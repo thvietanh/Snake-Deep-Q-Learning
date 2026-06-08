@@ -99,7 +99,7 @@ Bạn có thể thay đổi một số tham số trong file:```settings.py```
 
   cho ra một số chẵn.
 
-* `SPEED` *(mặc định = 30)*
+* `SPEED` *(mặc định = 60)*
   Điều chỉnh tốc độ cập nhật của trò chơi.
 
 * `Color`

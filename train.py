@@ -15,11 +15,11 @@ plotter = TrainingPlotter()
 # Hyperparameters
 MAX_MEMORY = 100_000
 BATCH_SIZE = 1000
-EPSILON_START = 1.0  # Initial exploration 
-EPSILON_END = 0.01   # Minimum exploration
-E_DECAY = 0.001  # Decay rate for exploration
+EPSILON = 1.0  # Initial exploration 
+E_DECAY = 0.01  # Decay rate for exploration
 GAMMA = 0.9 # Discount factor for future rewards
 LEARNING_RATE = 0.001
+TAU = 0.05
 
 class DQN(nn.Module):
     def __init__(self, input_size, hidden_size, output_size):
@@ -64,9 +64,9 @@ class Agent:
         self.number_of_games = 0
 
         # Hyperparameters for epsilon-greedy action selection
-        self.epsilon = EPSILON_START
+        self.epsilon = EPSILON
         self.gamma = GAMMA
-        self.blend_factor = 0.01
+        self.blend_factor = TAU
 
     def get_state(self, game):
         head = game.snake.body[0]
@@ -111,7 +111,7 @@ class Agent:
 
             # Diagonal Direction
             (game.fruit.position.x < game.snake.body[0].x) and (game.fruit.position.y < game.snake.body[0].y),
-            (game.fruit.position.x > game.snake.body[0].x) and (game.fruit.position.y < game.snake.body[0].y),
+            (game.fruit.position.x > game.snake.body[0].x) and (game.fruit.position.y > game.snake.body[0].y),
             (game.fruit.position.y < game.snake.body[0].y) and (game.fruit.position.x > game.snake.body[0].x),
             (game.fruit.position.y > game.snake.body[0].y) and (game.fruit.position.x < game.snake.body[0].x),
 
@@ -140,7 +140,7 @@ class Agent:
             action_values = self.local_model(state)  # Q values for all actions
         self.local_model.train()
 
-        if random.uniform(0.0, 100.0) < self.epsilon:
+        if random.uniform(0.0, 1.0) < self.epsilon:
             move = random.randint(0, self.action_size - 1)
         else:
             move = torch.argmax(action_values).item()
@@ -167,7 +167,7 @@ class Agent:
         self.optimizer.zero_grad()
         loss.backward()
         self.optimizer.step()
-        self.soft_update(self.local_model, self.target_model, tau=self.blend_factor)
+        self.soft_update(self.local_model, self.target_model, tau = self.blend_factor)
 
     def soft_update(self, local_model, target_model, tau):
         # Combine local and target model parameters using a blend factor tau
@@ -204,7 +204,8 @@ if __name__ == '__main__':
             agent.learn(experiences)
 
         if done:
-            agent.epsilon = EPSILON_END + (EPSILON_START - EPSILON_END) * np.exp(-E_DECAY * agent.number_of_games)
+            # agent.soft_update(agent.local_model, agent.target_model, tau = agent.blend_factor)
+            agent.epsilon = EPSILON * np.exp(-E_DECAY * agent.number_of_games)
                 # Decay epsilon after each game to reduce exploration over time
             plotter.update(score)
             # Reset the game and increment the number of games played
