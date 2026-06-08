@@ -1,3 +1,4 @@
 torch==2.10.0
 pygame-ce==2.5.7
 numpy==2.4.2
+PyInstaller==6.20.0
