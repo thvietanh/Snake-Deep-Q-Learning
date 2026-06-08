@@ -15,7 +15,8 @@ plotter = TrainingPlotter()
 # Hyperparameters
 MAX_MEMORY = 100_000
 BATCH_SIZE = 1000
-EPSILON = 100.0  # Initial exploration 
+EPSILON_START = 1.0  # Initial exploration 
+EPSILON_END = 0.01   # Minimum exploration
 E_DECAY = 0.001  # Decay rate for exploration
 GAMMA = 0.9 # Discount factor for future rewards
 LEARNING_RATE = 0.001
@@ -63,7 +64,7 @@ class Agent:
         self.number_of_games = 0
 
         # Hyperparameters for epsilon-greedy action selection
-        self.epsilon = EPSILON
+        self.epsilon = EPSILON_START
         self.gamma = GAMMA
         self.blend_factor = 0.01
 
@@ -203,7 +204,7 @@ if __name__ == '__main__':
             agent.learn(experiences)
 
         if done:
-            agent.epsilon = max(5.0, np.exp(-agent.number_of_games * E_DECAY) * agent.epsilon)  # Decay epsilon after each game to reduce exploration over time
+            agent.epsilon = EPSILON_END + (EPSILON_START - EPSILON_END) * np.exp(-E_DECAY * agent.number_of_games)
                 # Decay epsilon after each game to reduce exploration over time
             plotter.update(score)
             # Reset the game and increment the number of games played

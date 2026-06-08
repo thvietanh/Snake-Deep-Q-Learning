@@ -163,10 +163,10 @@ class Game:
     def update(self):
         self.animation_tick += 1
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 pygame.quit()
-                quit()
-        screen.fill((0, 0, 0))
+                sys.exit(0)
+        screen.fill((14, 17, 27))
         # Draw board
         for x in range(0,WINDOW_HEIGHT, BLOCK_SIZE):
             for y in range(0,WINDOW_WIDTH, BLOCK_SIZE):
