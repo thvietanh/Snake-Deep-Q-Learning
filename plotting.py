@@ -86,7 +86,7 @@ class TrainingPlotter:
         status_x = rect.x
         status_y = rect.y + rect.height + 10
         status_text = self.font.render(
-            f'Exploration Rate: {self.epsilon:.3f} %' if self.epsilon is not None else 'Epsilon: -',
+            f'Exploration Rate: {self.epsilon:.3f}' if self.epsilon is not None else 'Epsilon: -',
             True,
             self.text_color,
         )
@@ -96,7 +96,7 @@ class TrainingPlotter:
         if len(self.scores) > 0:
             count = len(self.scores)
             games_text = self.large_font.render(
-                f'Games: {count}  |  Last: {self.scores[-1]}  |  Avg: {self.mean_scores[-1]:.1f}',
+                f'Games: {count}  |  Last: {self.scores[-1]}  |  Average: {self.mean_scores[-1]:.2f}',
                 True,
                 self.text_color,
             )

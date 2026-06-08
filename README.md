@@ -4,7 +4,7 @@ Mô hình AI chơi game Rắn săn mồi sử dụng Deep Q-Learning.
 
 ---
 
-# Tải trò chơi Rắn săn mồi được chơi dựa trên model có sẵn: [Download](https://github.com/thvietanh/Snake-Deep-Q-Learning/releases/tag/v1.0.1)
+# Tải trò chơi Rắn săn mồi được chơi dựa trên model AI có sẵn: [Download](https://github.com/thvietanh/Snake-Deep-Q-Learning/releases/tag/v1.0.1)
 
 ## Tự cài đặt và huấn luyện model của riêng bạn
 
@@ -55,13 +55,14 @@ Lưu ý:
 
 * Mô hình sẽ tự động được lưu sau mỗi 10 ván chơi.
 * Sau khi huấn luyện xong, bạn có thể đóng chương trình.
+* Bạn có thể tiếp tục huấn luyện sau bằng cách chạy lại train.py, mô hình sẽ tiếp tục huấn luyện từ điểm lưu cuối cùng của nó.
 
 Mô hình đã huấn luyện sẽ được lưu tại:
 
 ```bash
 model.pth
 ```
-
+* Xóa tệp này để bắt đầu một phiên huấn luyện mới
 ---
 
 ## Chơi với model đã huấn luyện
@@ -72,7 +73,7 @@ Chạy:
 py app.py
 ```
 
-* Cách 2: Nếu bạn muốn 1 tệp thực thi sạch cho phân phối, chạy:
+* Cách 2: Nếu bạn muốn 1 tệp thực thi sạch cho phân phối (executable file), chạy:
 ```bash
 build.bat
 ```
@@ -99,7 +100,7 @@ Bạn có thể thay đổi một số tham số trong file:```settings.py```
 
   cho ra một số chẵn.
 
-* `SPEED` *(mặc định = 30)*
+* `SPEED` *(mặc định = 60)*
   Điều chỉnh tốc độ cập nhật của trò chơi.
 
 * `Color`

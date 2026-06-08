@@ -139,8 +139,6 @@ class Game:
         if self.snake.body[0] == self.fruit.position:
             self.score += 1
             self.reward = 10
-            eat_center_x = self.fruit.position.x + BLOCK_SIZE // 2
-            eat_center_y = self.fruit.position.y + BLOCK_SIZE // 2
             self.fruit.spawn(self.snake.body)
         else:
             self.snake.body.pop()
@@ -163,10 +161,10 @@ class Game:
     def update(self):
         self.animation_tick += 1
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 pygame.quit()
-                quit()
-        screen.fill((0, 0, 0))
+                sys.exit(0)
+        screen.fill((14, 17, 27))
         # Draw board
         for x in range(0,WINDOW_HEIGHT, BLOCK_SIZE):
             for y in range(0,WINDOW_WIDTH, BLOCK_SIZE):
@@ -203,5 +201,5 @@ class Game:
 
         screen.blit(fruit_texture, (self.fruit.position.x, self.fruit.position.y))
         # Separator line moved to match the larger training plot area
-        pygame.draw.line(screen, GRAY, (WINDOW_WIDTH, 0), (WINDOW_HEIGHT, SCREEN_HEIGHT))
+        pygame.draw.line(screen, GRAY, (WINDOW_WIDTH, 0), (WINDOW_WIDTH, SCREEN_HEIGHT))
         # Timing and screen flip are handled in the main loop to avoid double buffering issues

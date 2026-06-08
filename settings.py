@@ -16,7 +16,7 @@ SCREEN_WIDTH = 1240
 # Size of each block in the game
 BLOCK_SIZE = 40
 # Speed of the game (higher number means faster training but more CPU usage)
-SPEED = 30
+SPEED = 60
 
 class Direction(Enum):
     RIGHT = 1

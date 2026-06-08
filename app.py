@@ -248,7 +248,8 @@ def update_controls_by_click(pos, current_speed, running, manual):
 
 if __name__ == '__main__':
     agent = Agent()
-    agent.local_model.load_state_dict(torch.load(resource_path('model.pth')))
+    checkpoint = torch.load(resource_path('model.pth'), weights_only=False)
+    agent.local_model.load_state_dict(checkpoint['local_model'])
     agent.local_model.eval()
 
     game = Game()
@@ -277,7 +278,7 @@ if __name__ == '__main__':
     while True:
         # Check for manual control toggle and handle events
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 pygame.quit()
                 sys.exit(0)
             elif event.type == pygame.KEYDOWN:
