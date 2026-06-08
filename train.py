@@ -176,10 +176,28 @@ class Agent:
 
     # Save model to file
     def save_model(self, file_name='model.pth'):
-        torch.save(self.local_model.state_dict(), file_name)
+        torch.save({
+        'local_model': self.local_model.state_dict(),
+        'target_model': self.target_model.state_dict(),
+        'optimizer': self.optimizer.state_dict(),
+        'epsilon': self.epsilon,
+        'number_of_games': self.number_of_games,
+        }, file_name)
+
+    def load_model(self, file_name='model.pth'):
+        if os.path.exists(file_name):
+            checkpoint = torch.load(file_name, weights_only=False)
+            self.local_model.load_state_dict(checkpoint['local_model'])
+            self.target_model.load_state_dict(checkpoint['target_model'])
+            self.optimizer.load_state_dict(checkpoint['optimizer'])
+            self.epsilon = checkpoint['epsilon']
+            self.number_of_games = checkpoint['number_of_games']
+            print(f"Resumed from game {self.number_of_games}, epsilon={self.epsilon:.3f}")
 
 if __name__ == '__main__':
     agent = Agent()
+    agent.load_model()
+
     game = Game()
     clock = pygame.time.Clock()
 

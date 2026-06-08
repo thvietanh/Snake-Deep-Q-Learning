@@ -55,13 +55,14 @@ Lưu ý:
 
 * Mô hình sẽ tự động được lưu sau mỗi 10 ván chơi.
 * Sau khi huấn luyện xong, bạn có thể đóng chương trình.
+* Bạn có thể tiếp tục huấn luyện sau bằng cách chạy lại train.py, mô hình sẽ tiếp tục huấn luyện từ điểm lưu cuối cùng của nó.
 
 Mô hình đã huấn luyện sẽ được lưu tại:
 
 ```bash
 model.pth
 ```
-
+* Xóa tệp này để bắt đầu một phiên huấn luyện mới
 ---
 
 ## Chơi với model đã huấn luyện
